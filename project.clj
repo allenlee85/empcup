@@ -7,6 +7,7 @@
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [org.clojure/clojurescript "1.9.671" :scope "provided"]
                  [com.cognitect/transit-clj "0.8.300"]
+                 [cljsjs/react-bootstrap "0.31.0-0"]                 
                  [ring "1.6.2"]
                  [ring/ring-defaults "0.3.1"]
                  [bk/ring-gzip "0.2.1"]
@@ -16,7 +17,7 @@
                  [com.stuartsierra/component "0.3.2"]
                  [org.danielsz/system "0.4.0"]
                  [org.clojure/tools.namespace "0.2.11"]
-                 [re-frame "0.9.4"]]
+                 [re-frame "0.10.2"]]
 
   :plugins [[lein-cljsbuild "1.1.6"]
             [lein-environ "1.1.0"]]
