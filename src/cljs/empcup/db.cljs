@@ -1,4 +1,6 @@
 (ns empcup.db)
 
 (def default-db
-  {:name "re-frame"})
+  {:app-panel :cards
+   :dice-state nil
+   :rolled-punishment nil})

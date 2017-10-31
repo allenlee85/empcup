@@ -3,6 +3,16 @@
   (:require [re-frame.core :as re-frame]))
 
 (re-frame/reg-sub
- :name
+ :app-panel
  (fn [db]
-   (:name db)))
+   (:app-panel db)))
+
+(re-frame/reg-sub
+ :rolled-punishment
+ (fn [db]
+   (:rolled-punishment db)))
+
+(re-frame/reg-sub
+ :dice-state
+ (fn [db]
+   (:dice-state db)))
