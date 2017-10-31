@@ -1,3 +1,4 @@
-h1 {
-  text-decoration: underline;
+div.app-panel {
+    padding-left: 10px;
+    padding-right: 10px;
 }

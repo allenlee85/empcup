@@ -24,13 +24,9 @@
 (def Panel (reagent/adapt-react-class (aget js/ReactBootstrap "Panel")))
 
 
-(defn about-panel []
-  [:div
-   [:h1 "About"]
-   [:p "Emperor's Cup"]])
 
 (defn cards-panel []
-  [:div
+  [:div.app-panel
    [:h1 "Cards"]
    ;; There seems to be a bug passing a react-element as :header with
    ;; a for loop directly nested in hiccup, so we'll build up the
@@ -45,7 +41,7 @@
   (let [dice-state (re-frame/subscribe [:dice-state])
         rolled (re-frame/subscribe [:rolled-punishment])]
     (fn []
-     [:div
+     [:div.app-panel
       [:h1 "Punishments"]
       [:div
        [:ol
