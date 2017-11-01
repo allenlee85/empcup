@@ -1,4 +1,37 @@
 div.app-panel {
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+div.scrollmenu {
+    // background-color: #333;
+    margin: auto;
+    text-align: center;    
+    overflow: auto;
+    white-space: nowrap;
+}
+
+div.scrollmenu a {
+    display: inline-block;
+    // color: white;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+}
+
+div.scrollmenu a:hover {
+    background-color: #777;
+}
+
+div.card-div {
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+    color: red;
 }
