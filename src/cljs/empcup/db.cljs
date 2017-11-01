@@ -3,4 +3,5 @@
 (def default-db
   {:app-panel :cards
    :dice-state nil
-   :rolled-punishment nil})
+   :rolled-punishment nil
+   :card nil})

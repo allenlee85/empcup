@@ -16,3 +16,8 @@
  :dice-state
  (fn [db]
    (:dice-state db)))
+
+(re-frame/reg-sub
+ :card
+ (fn [db]
+   (:card db)))

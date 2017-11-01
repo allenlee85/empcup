@@ -23,19 +23,28 @@
 (def Accordion (reagent/adapt-react-class (aget js/ReactBootstrap "Accordion")))
 (def Panel (reagent/adapt-react-class (aget js/ReactBootstrap "Panel")))
 
-
-
 (defn cards-panel []
-  [:div.app-panel
-   [:h1 "Cards"]
-   ;; There seems to be a bug passing a react-element as :header with
-   ;; a for loop directly nested in hiccup, so we'll build up the
-   ;; accordion manually instead.
-   (apply conj [Accordion]
-          (for [{:keys [card rule]} game/cards]
-            [Panel {:header (reagent/as-element [:div {:style {:width "100%"}} card])
-                    :eventKey card}
-             rule]))])
+  (let [current-card (re-frame/subscribe [:card])]
+    (fn []
+      [:div.app-panel
+       [:h1 "Cards"]
+       [:div.scrollmenu
+        (for [{:keys [card rule]} game/cards]
+          [:a {:href "#" :onClick #(re-frame/dispatch [:select-card card])} card])]
+       
+       (if @current-card
+         [:div.card-panel
+          [:h3 (:name (game/get-card @current-card))]
+          (:rule (game/get-card @current-card))])
+
+      ;; There seems to be a bug passing a react-element as :header with
+      ;; a for loop directly nested in hiccup, so we'll build up the
+      ;; accordion manually instead.
+      #_(apply conj [Accordion]
+               (for [{:keys [card rule]} game/cards]
+                 [Panel {:header (reagent/as-element [:div {:style {:width "100%"}} card])
+                         :eventKey card}
+                  rule]))])))
 
 (defn punishments-panel []
   (let [dice-state (re-frame/subscribe [:dice-state])
@@ -46,14 +55,15 @@
       [:div
        [:ol
          (for [pun game/punishments]
-           [:li pun])]]
-      [:div
+           [:li (if (and (not= @dice-state :rolling) (= @rolled pun))
+                  [:span {:style {:fontWeight "bold" :fontSize "120%"}} pun]
+                  pun)])]]
+      [:div {:style {:textAlign "center"}}
        [Button {:bsStyle "danger"
-                :onClick #(if (not= @dice-state :rolling) (re-frame/dispatch [:roll-punishment]))} "PUNISH ME"]
-       (case @dice-state
-         :rolled [:div [:strong @rolled]]
-         :rolling [:div (str "Rolling...")]
-         [:div])]]
+                :bsSize "lg"
+                :className "punish-btn"
+                :disabled (= @dice-state :rolling)
+                :onClick #(re-frame/dispatch [:roll-punishment])} "PUNISH ME"]]]
       )))
 
 (defn app-navbar []

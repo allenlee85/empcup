@@ -17,7 +17,7 @@
  :roll-punishment
  (fn [db ev]
    (js/setTimeout #(re-frame/dispatch [:dice-lands])
-                  1000)
+                  600)
    (assoc db :dice-state :rolling)))
 
 (re-frame/reg-event-db
@@ -26,3 +26,9 @@
    (-> db
        (assoc :dice-state :rolled)
        (assoc :rolled-punishment (rand-nth game/punishments)))))
+
+(re-frame/reg-event-db
+ :select-card
+ (fn [db [_ card]]
+   (print db)
+   (assoc db :card card)))
