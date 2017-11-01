@@ -1,7 +1,7 @@
 (ns empcup.db)
 
 (def default-db
-  {:app-panel :cards
+  {:app-panel :about
    :dice-state nil
    :rolled-punishment nil
-   :card nil})
+   :card "K"})
